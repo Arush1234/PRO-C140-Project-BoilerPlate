@@ -1,14 +1,10 @@
 $(document).ready(function(){
 
     console.log('Document is Ready')
-
-    //  getting the date using Date() object and converting it to a string
     let date = new Date()
     let current_date = date.toDateString()
 
-    //  display the date on the HTML page using JQUERY and JS
     $('#date').text('Date : ' + current_date)
-
     
     let review = ""
     let input_data = ""
@@ -16,7 +12,6 @@ $(document).ready(function(){
     let emotion = ""
     let emoji_url = ""
 
-    //  making a function for AJAX request
     function ajax_request(api_url , input_data){
 
         $.ajax({
@@ -158,38 +153,26 @@ $(document).ready(function(){
         $('#v_textbox').val('')
     })
 
-    // calling the displaybot function, when DOM is ready
+
     displayBot()
 
 })
 
-
 function displayBot() {
-
-    //  when chatbot button is clicked
-    //Activity1
-    $('').click(function () {
-
-        //  toggle the chatbot chat window
+    $('.chatbox__button').click(function () {
         $('.chatbox__chat').toggle()
     });
-
     //Start Conversation with Bot
     askBot()
 }
 
 function askBot() {
+    $("#send_button").click(function () {
 
-    //  when send button is clicked
-    //Activity2
-    $("").click(function () {
-
-        //  get text from textbox in chatbot
         var user_bot_input_text = $("#bot_input_text").val()
 
         if (user_bot_input_text != "") {
            
-            //  add a new div element in the chat window
             $("#chat_messages").append('<div class="user__messages">' + user_bot_input_text + ' </div>')
             
             //Clear the text input box after sending message
@@ -201,11 +184,7 @@ function askBot() {
 
             $.ajax({
                 type: 'POST',
-
-                //  write the same URL as written in app.py file
-                //Activity3
-                url: "",
-
+                url: "/bot-response",
                 data: JSON.stringify(chat_input_data),
                 dataType: "json",
                 contentType: 'application/json',
@@ -223,7 +202,6 @@ function askBot() {
         }
 
     })
-
     $('#bot_input_text').keypress(function(e){
         //If Enter key(key code is 13) pressed
         if(e.which == 13){         
@@ -231,5 +209,3 @@ function askBot() {
         }
     });
 }
-
-    
