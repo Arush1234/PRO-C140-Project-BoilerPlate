@@ -19,8 +19,6 @@ def predict():
                     'message' : 'Empty Review'}
     
     else:
-
-        # calling the predict method from prediction.py module
         sentiment , path = text_sentiment_prediction.predict(review)
         response = {'status' : 'success',
                     'message' : 'Got it',
